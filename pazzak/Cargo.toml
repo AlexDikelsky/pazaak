@@ -1,0 +1,7 @@
+[package]
+name = "pazzak"
+version = "0.1.0"
+authors = ["dikeal01"]
+edition = "2018"
+
+[dependencies]
