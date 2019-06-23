@@ -18,17 +18,25 @@ pub use crate::disp_board::*;
 
 static HAND_SIZE: u8 = 4;
 static POINTS_TO_WIN: i8 = 20; //Needs to be signed because compared to points, which can be a negative number
-
+static P1_NAME: &str = "Player 1";
+static P2_NAME: &str = "Player 2";
 fn main() {
     //clear::clear();
     let mut p1 = player::Player::make_ai();
-    let mut p2 = player::Player::make_ai();
+    let mut p2 = player::Player::make_player();
+
+    /*p1.add_win();
+    p1.add_win();
+
+    p2.add_win();
+    p2.add_win();
+    p2.add_win();*/
 
     disp_board::disp(&p1, &p2);
-
     game::setup_game(&mut p1, &mut p2);
     game::play_turns(&mut p1, &mut p2);
 
+    disp_board::disp(&p1, &p2);
     /*let mut p1 = player::Player::make_ai();
     //println!("{}", x.get_score());
     

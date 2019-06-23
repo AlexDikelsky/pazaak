@@ -68,6 +68,9 @@ impl Player {
     pub fn get_board(&self) -> &[[super::card::Card; 3]; 3] {
         &self.board
     }
+    pub fn get_value_in_board(&self, i: usize, j: usize) -> &super::card::Card {
+        &self.board[i][j]
+    }
     pub fn get_card(&self, card_num: usize) -> &super::card::Card {
         &self.hand[card_num]
     }
