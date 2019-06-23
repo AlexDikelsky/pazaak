@@ -1,8 +1,7 @@
 use std::io;
 
 pub fn read_i8() -> i8 {
-    //string_to_i8(read_string())
-    32
+    string_to_i8(read_string()) 
 }
 
 

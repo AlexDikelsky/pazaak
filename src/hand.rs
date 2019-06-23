@@ -1,18 +1,14 @@
 use std::collections::HashMap;
-
-pub fn make_hand() -> HashMap<i8, i8> {
+//TODO Add a random hand maker
+pub fn make_hand() -> HashMap<u8, super::card::Card> {
     let mut hand = HashMap::new();
     let hand_size = 4;
    
-    let mut a = super::card::Card::make_card(5, true);
-
-    hand.insert(8_i8, 1_i8);
-    
-//    read::read_i8();
-
-    for (a, b) in &hand {
-        println!("{}: {}", a, b);
+    for i in 0..hand_size {
+        hand.insert(i, super::card::Card::make_card(
+                                super::read::read_i8()        
+                    ));
     };
+
     hand
 }
-
