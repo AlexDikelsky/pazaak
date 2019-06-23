@@ -1,4 +1,4 @@
-static HAND_SIZE: u8 = 4;
+use crate::HAND_SIZE;
 
 pub fn make_hand() -> Vec<super::card::Card> {
     let mut hand = vec![];

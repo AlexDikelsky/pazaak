@@ -7,11 +7,13 @@ pub struct Player {
     state: State,
 }
 
-enum State {
-    Draw,
-    Stand,
-    Wait,
+#[derive(PartialEq)]
+pub enum State {
+    MyTurn,
+    YourTurn,
+    Done,
 }
+
 
 impl Player {
     pub fn make_player() -> Player {
@@ -21,7 +23,7 @@ impl Player {
                                                                             super::card::Card::empty_card()],
                                                         [super::card::Card::empty_card(), super::card::Card::empty_card(), 
                                                                             super::card::Card::empty_card()]],
-                score: 0, wins: 0, player_no: 0, state: State::Draw}
+                score: 0, wins: 0, player_no: 0, state: State::MyTurn}
     }
     pub fn make_ai() -> Player {
         Player { hand: super::hand::make_rand_hand(), board: [[super::card::Card::empty_card(), super::card::Card::empty_card(),
@@ -30,15 +32,16 @@ impl Player {
                                                                             super::card::Card::empty_card()],
                                                         [super::card::Card::empty_card(), super::card::Card::empty_card(), 
                                                                             super::card::Card::empty_card()]],
-                score: 0, wins: 0, player_no: 0, state: State::Draw}
+                score: 0, wins: 0, player_no: 0, state: State::MyTurn} 
     }
 
     pub fn add_card(&mut self, new_card: &super::card::Card) {
         let mut i = 0;
-        let mut placed = false;
         let mut j = 0;
+        let mut placed = false;
 
         while i < 3 && !placed {
+            j = 0;
             while j < 3 && !placed {
                 if &self.board[i][j].get_value() == &0 {
                     placed = true;
@@ -50,14 +53,17 @@ impl Player {
         self.score += new_card.get_value();
         self.board[i-1][j-1] = super::card::Card::make_card(new_card.get_value());
     }
-    pub fn to_stand(&mut self) {
-        self.state = State::Stand;
+    pub fn to_your(&mut self) {
+        self.state = State::YourTurn;
     }
-    pub fn to_wait(&mut self) {
-        self.state = State::Wait;
+    pub fn to_my(&mut self) {
+        self.state = State::MyTurn;
     }
-    pub fn to_draw(&mut self) {
-        self.state = State::Draw;
+    pub fn to_done(&mut self) {
+        self.state = State::Done;
+    }
+    pub fn get_state(&self) -> &State {
+        &self.state
     }
     pub fn get_board(&self) -> &[[super::card::Card; 3]; 3] {
         &self.board
