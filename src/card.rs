@@ -1,44 +1,30 @@
 //use ansi_term::style
-//use rng::Rand;
+use rand::prelude::*;
 
 pub struct Card {
-    value: i8,
-    used: bool,
-    //flip: bool,
+    value: i8,    
 }
 
 impl Card {
     pub fn make_card(value_u: i8) -> Card {
-        Card { value: value_u, used: false, /*flip: false*/ }
-    }
-    /*pub fn make_flip_card(value_u: i8, flip_u: bool) -> Card {
-        Card { value: value_u, used: false, /*flip: flip_u*/ }
-    }*/
+        Card { value: value_u, }
+    } 
     pub fn empty_card() -> Card {
-        Card { value: 0, used: true, /*flip: false*/ }
+        Card { value: 0 }
     }
-    /*pub fn make_rand_card() -> Card {
+    pub fn make_rand_card() -> Card {
         let mut rng = rand::thread_rng();
-        Card { value: rng.gen_range(1, 11), used: false, /*flip: false*/ }
-    }*/
+        Card { value: rng.gen_range(-6, 7) }
+    }
+    pub fn make_draw_card() -> Card {
+        let mut rng = rand::thread_rng();
+        Card { value: rng.gen_range(1, 11) }
+    }
     pub fn get_value(&self) -> i8 {
         self.value
     }
-    /*pub fn flip_value(&mut self) -> () {
-        if self.flip {
-            self.value = self.value * -1_i8;
-        }
-        else {
-            println!("Cannot be flipped");
-        }
-    }*/
     pub fn mark_used(&mut self) -> () {
-        if !self.used {
-            self.used = true;
-        }
-        else {
-            println!("Error, used card twice or more");
-        }
+        self.value = 0     
     }
 }
 

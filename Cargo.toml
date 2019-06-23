@@ -5,3 +5,5 @@ authors = ["dikeal01"]
 edition = "2018"
 
 [dependencies]
+ansi_term = "0.9"
+rand = "0.6"
