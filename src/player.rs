@@ -5,6 +5,7 @@ pub struct Player {
     wins: u8,
     player_no: u8,
     state: State,
+    name: String,
 }
 
 #[derive(PartialEq)]
@@ -16,23 +17,23 @@ pub enum State {
 
 
 impl Player {
-    pub fn make_player() -> Player {
+    pub fn make_player(n: &str, number: u8) -> Player {
         Player { hand: super::hand::make_hand(), board: [[super::card::Card::empty_card(), super::card::Card::empty_card(),
                                                                             super::card::Card::empty_card()],
                                                         [super::card::Card::empty_card(), super::card::Card::empty_card(), 
                                                                             super::card::Card::empty_card()],
                                                         [super::card::Card::empty_card(), super::card::Card::empty_card(), 
                                                                             super::card::Card::empty_card()]],
-                score: 0, wins: 0, player_no: 0, state: State::MyTurn}
+                score: 0, wins: 0, player_no: number, state: State::MyTurn, name: n.to_string()}
     }
-    pub fn make_ai() -> Player {
+    pub fn make_ai(n: &str, number: u8) -> Player {
         Player { hand: super::hand::make_rand_hand(), board: [[super::card::Card::empty_card(), super::card::Card::empty_card(),
                                                                             super::card::Card::empty_card()],
                                                         [super::card::Card::empty_card(), super::card::Card::empty_card(), 
                                                                             super::card::Card::empty_card()],
                                                         [super::card::Card::empty_card(), super::card::Card::empty_card(), 
                                                                             super::card::Card::empty_card()]],
-                score: 0, wins: 0, player_no: 0, state: State::MyTurn} 
+                score: 0, wins: 0, player_no: number, state: State::MyTurn, name: n.to_string()} 
     }
 
     pub fn add_card(&mut self, new_card: &super::card::Card) {
@@ -76,6 +77,9 @@ impl Player {
     }
     pub fn get_score(&self) -> i8{
         self.score
+    }
+    pub fn get_name(&self) -> &str {
+        &self.name
     }
     pub fn add_win(&mut self) {
         self.wins += 1;

@@ -9,26 +9,28 @@ static SEVEN:&str = "       ";
 static ELEVEN:&str = "           ";
 static FIFTEEN:&str = "               ";
 
-use crate::P1_NAME;
-use crate::P2_NAME;
-
 pub fn disp(p1: &super::player::Player, p2: &super::player::Player) {
+
+    
     let mut p1_board = p1.get_board().iter();
     let mut p2_board = p2.get_board().iter();
 
     super::clear::clear();
 
     print_header(p1, p2);
+    println!();
     for _i in 0..3 {
         print_row(&mut p1_board.next().unwrap(), &mut p2_board.next().unwrap());
     }
     print_hand_header(p1, p2); 
     print_hand(p1, p2);
+    println!();
 }
 
 //NOTE Adding actual names might not be fun
 fn print_header(p1: &super::player::Player, p2: &super::player::Player) {
-    println!("{}{}{}{}{}{}{}{}{}", P1_NAME, EIGHT, disp_score(p1.get_score()), TEN, match_score(p1, p2), TEN, disp_score(p2.get_score()), EIGHT, P2_NAME);
+    println!("{}{}{}{}{}{}{}{}{}", p1.get_name(), EIGHT, disp_score(p1.get_score()), TEN,
+            match_score(p1, p2), TEN, disp_score(p2.get_score()), EIGHT, p2.get_name());
 }
 
 fn print_row(p1_row: &[super::card::Card; 3], p2_row: &[super::card::Card; 3]) {
@@ -42,7 +44,7 @@ fn print_row(p1_row: &[super::card::Card; 3], p2_row: &[super::card::Card; 3]) {
     println!();
 }
 fn print_hand_header(p1: &super::player::Player, p2: &super::player::Player) {
-    println!("{}{}{}{}{}{}", ELEVEN, P1_NAME, " Hand", FIFTEEN, P2_NAME, " Hand");
+    println!("{}{}{}{}{}{}", ELEVEN, p1.get_name(), " Hand", FIFTEEN, p2.get_name(), " Hand");
 }
 fn print_hand(p1: &super::player::Player, p2: &super::player::Player) {
     println!("{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}{}", TWO, TOP, ONE, TOP, ONE, TOP, ONE, TOP, FIVE, TOP, ONE, TOP, ONE, TOP, ONE, TOP);

@@ -1,7 +1,7 @@
 [package]
-name = "pazzak"
+name = "pazaak"
 version = "0.1.0"
-authors = ["dikeal01"]
+authors = ["Alex Dikelsky"]
 edition = "2018"
 
 [dependencies]
