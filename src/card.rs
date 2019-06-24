@@ -1,4 +1,4 @@
-//use ansi_term::style
+//use colored::*;
 use rand::prelude::*;
 
 #[derive(Debug)]

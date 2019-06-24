@@ -78,6 +78,9 @@ impl Player {
     pub fn get_score(&self) -> i8{
         self.score
     }
+    pub fn reset_score(&mut self) {
+        self.score = 0;
+    }
     pub fn get_name(&self) -> &str {
         &self.name
     }
