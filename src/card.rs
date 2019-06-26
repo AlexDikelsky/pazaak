@@ -1,4 +1,4 @@
-//use colored::*;
+use colored::*;
 use rand::prelude::*;
 
 #[derive(Debug)]
@@ -26,14 +26,30 @@ impl Card {
     pub fn mark_used(&mut self) -> () {
         self.value = 0     
     }
-    pub fn mid_line(&self) -> String {
-        let x = if &self.value == &0 {
-            " ".to_string()
-        }
+    pub fn get_lines(&self) -> [colored::ColoredString;3] {
+        let top = "|‾‾‾‾| ";
+        let bot = "|____| ";
+        if self.value < 0 {
+            [
+                top.red(),
+                ("| ".to_owned()+&self.value.to_string()+" | ").red(),
+                bot.red(),
+            ]
+        } 
+        else if self.value == 0 {
+             [
+                top.bright_yellow(),
+                ("|    | ".to_owned()).bright_yellow(),
+                bot.bright_yellow(),
+             ]
+        } 
         else {
-            self.value.to_string()
-        };
-        ("| ".to_string() + &sign(self.value).to_string() + &x +  &" |".to_string())
+            [
+                top.blue(),
+                ("|  ".to_owned()+&self.value.to_string()+" | ").blue(),
+                bot.blue()
+            ]
+        }
     }
 }
 fn rand_not_zero() -> i8 {
