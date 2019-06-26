@@ -72,14 +72,24 @@ impl Player {
     pub fn get_value_in_board(&self, i: usize, j: usize) -> &super::card::Card {
         &self.board[i][j]
     }
-    pub fn get_card(&self, card_num: usize) -> &super::card::Card {
+    pub fn get_card(&self, card_num:usize) -> &super::card::Card {
         &self.hand[card_num]
+    }
+    pub fn use_from_hand(&mut self, card_num: usize) -> i8 {
+        let x = &self.hand[card_num].get_value();
+        &self.hand[card_num].mark_used();
+        *x    
     }
     pub fn get_score(&self) -> i8{
         self.score
     }
     pub fn reset_score(&mut self) {
         self.score = 0;
+    }
+    pub fn reset_board(&mut self) {
+        self.board = [[super::card::Card::empty_card(), super::card::Card::empty_card(), super::card::Card::empty_card()],
+                     [super::card::Card::empty_card(), super::card::Card::empty_card(), super::card::Card::empty_card()],
+                     [super::card::Card::empty_card(), super::card::Card::empty_card(), super::card::Card::empty_card()]]
     }
     pub fn get_name(&self) -> &str {
         &self.name

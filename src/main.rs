@@ -25,43 +25,6 @@ fn main() {
     let mut p1 = player::Player::make_ai("Player 1", 0);
     let mut p2 = player::Player::make_ai("Player 2", 1);
 
-   /* p1.add_win();
-    p1.add_win();
-
-    p2.add_win();
-    p2.add_win();
-    p2.add_win();
-*/
-
     disp_board::disp(&p1, &p2);
     series::play_series(&mut p1, &mut p2);
-    disp_board::disp(&p1, &p2);
-
-
-    /*let mut p1 = player::Player::make_ai();
-    //println!("{}", x.get_score());
-    
-    for i in 0..4 {
-        println!("{}: {}", i+1, p1.get_card(i).get_value());
-    }
-
-    turn::draw(&mut p1); 
-
-    for i in p1.get_board().iter() {
-        for j in i.iter() {
-            print!("{}", j.get_value());
-        }
-        println!();
-    }
-        
-
-    println!("{}", p1.get_score());*/
-
-    //println!("{}", x.get_side());
-
-    /* 
-    let y = hand::make_rand_hand();
-    for i in 0..4 {
-        println!("{}: {}", i, y[&i].get_value());
-    }*/
 }

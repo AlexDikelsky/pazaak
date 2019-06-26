@@ -13,7 +13,7 @@ pub fn disp(p1: &super::player::Player, p2: &super::player::Player) {
     let mut p1_board = p1.get_board().iter();
     let mut p2_board = p2.get_board().iter();
 
-    //super::clear::clear();
+    super::clear::clear();
 
     print_header(p1, p2);
     println!();
