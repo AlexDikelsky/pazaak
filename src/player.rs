@@ -1,39 +1,39 @@
+use crate::BOARD_X;
+use crate::BOARD_Y;
+
 pub struct Player {
     hand: Vec<super::card::Card>,
-    board: [[super::card::Card; 3]; 3],
+    board: [[super::card::Card; BOARD_X]; BOARD_Y],
     score: i8,
     wins: u8,
-    player_no: u8,
     state: State,
     name: String,
 }
 
 #[derive(PartialEq)]
 pub enum State {
-    MyTurn,
-    YourTurn,
+    NotDone,
     Done,
 }
 
-
 impl Player {
-    pub fn make_player(n: &str, number: u8) -> Player {
+    pub fn make_player(n: &str) -> Player {
         Player { hand: super::hand::make_hand(), board: [[super::card::Card::empty_card(), super::card::Card::empty_card(),
                                                                             super::card::Card::empty_card()],
                                                         [super::card::Card::empty_card(), super::card::Card::empty_card(), 
                                                                             super::card::Card::empty_card()],
                                                         [super::card::Card::empty_card(), super::card::Card::empty_card(), 
                                                                             super::card::Card::empty_card()]],
-                score: 0, wins: 0, player_no: number, state: State::MyTurn, name: n.to_string()}
+                score: 0, wins: 0, state: State::NotDone, name: n.to_string()}
     }
-    pub fn make_ai(n: &str, number: u8) -> Player {
+    pub fn make_ai(n: &str) -> Player {
         Player { hand: super::hand::make_rand_hand(), board: [[super::card::Card::empty_card(), super::card::Card::empty_card(),
                                                                             super::card::Card::empty_card()],
                                                         [super::card::Card::empty_card(), super::card::Card::empty_card(), 
                                                                             super::card::Card::empty_card()],
                                                         [super::card::Card::empty_card(), super::card::Card::empty_card(), 
                                                                             super::card::Card::empty_card()]],
-                score: 0, wins: 0, player_no: number, state: State::MyTurn, name: n.to_string()} 
+                score: 0, wins: 0, state: State::NotDone, name: n.to_string()} 
     }
 
     pub fn add_card(&mut self, new_card: &super::card::Card) {
@@ -41,9 +41,9 @@ impl Player {
         let mut j = 0;
         let mut placed = false;
 
-        while i < 3 && !placed {
+        while i < BOARD_Y && !placed {
             j = 0;
-            while j < 3 && !placed {
+            while j < BOARD_X && !placed {
                 if &self.board[i][j].get_value() == &0 {
                     placed = true;
                 }
@@ -54,11 +54,8 @@ impl Player {
         self.score += new_card.get_value();
         self.board[i-1][j-1] = super::card::Card::make_card(new_card.get_value());
     }
-    pub fn to_your(&mut self) {
-        self.state = State::YourTurn;
-    }
-    pub fn to_my(&mut self) {
-        self.state = State::MyTurn;
+    pub fn to_not(&mut self) {
+        self.state = State::NotDone;
     }
     pub fn to_done(&mut self) {
         self.state = State::Done;
@@ -66,7 +63,7 @@ impl Player {
     pub fn get_state(&self) -> &State {
         &self.state
     }
-    pub fn get_board(&self) -> &[[super::card::Card; 3]; 3] {
+    pub fn get_board(&self) -> &[[super::card::Card; BOARD_X]; BOARD_Y] {
         &self.board
     }
     pub fn get_value_in_board(&self, i: usize, j: usize) -> &super::card::Card {
@@ -99,8 +96,5 @@ impl Player {
     }
     pub fn get_wins(&self) -> u8 {
         self.wins
-    }
-    pub fn get_side(&self) -> u8 {
-        self.player_no
     }
 }

@@ -1,3 +1,6 @@
+use crate::BOARD_X;
+use crate::BOARD_Y;
+
 static TOP:&str = "|‾‾‾‾|";
 static BOT:&str = "|____|";
 static ONE:&str = " ";
@@ -17,7 +20,7 @@ pub fn disp(p1: &super::player::Player, p2: &super::player::Player) {
 
     print_header(p1, p2);
     println!();
-    for _i in 0..3 {
+    for _i in 0..BOARD_Y {
         print_row(&mut p1_board.next().unwrap(), &mut p2_board.next().unwrap());
     }
     print_hand_header(p1, p2); 
@@ -25,13 +28,12 @@ pub fn disp(p1: &super::player::Player, p2: &super::player::Player) {
     println!();
 }
 
-//NOTE Adding actual names might not be fun
 fn print_header(p1: &super::player::Player, p2: &super::player::Player) {
     println!("{}{}{}{}{}{}{}{}{}", p1.get_name(), EIGHT, disp_score(p1.get_score()), TEN,
             match_score(p1, p2), TEN, disp_score(p2.get_score()), EIGHT, p2.get_name());
 }
 
-fn print_row(p1_row: &[super::card::Card; 3], p2_row: &[super::card::Card; 3]) {
+fn print_row(p1_row: &[super::card::Card; BOARD_X], p2_row: &[super::card::Card; BOARD_X]) {
     println!("{}{}{}{}{}{}{}{}{}{}{}{}", EIGHT, TOP, ONE, TOP, ONE, TOP, SEVEN, TOP, ONE, TOP, ONE, TOP);
     println!("{}{}{}{}{}{}{}{}{}{}{}{}", EIGHT, 
                                           p1_row[0].mid_line(), ONE, p1_row[1].mid_line(), ONE, p1_row[2].mid_line(), 
@@ -69,14 +71,14 @@ fn disp_score(x: i8) -> String {
     }
 }
 fn match_score(p1: &super::player::Player, p2: &super::player::Player) -> String {
-    String::from(p_score_to_str(p1).to_string() + "-" + p_score_to_str(p2))
+    String::from(p_score_to_str(p1).to_string() + "-" + &p_score_to_str(p2))
 }
-fn p_score_to_str(p: &super::player::Player) -> &str{
+fn p_score_to_str(p: &super::player::Player) -> String{
     match p.get_wins() {
-        0 => "000",
-        1 => "X00",
-        2 => "XX0",
-        3 => "XXX",
-        _ => "ERR",
+        0 => "000".to_string(),
+        1 => "X00".to_string(),
+        2 => "XX0".to_string(),
+        3 => "XXX".to_string(),
+        _ => format!("{:03}", p.get_wins()),
     }
 }

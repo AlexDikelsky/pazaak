@@ -5,5 +5,4 @@ authors = ["Alex Dikelsky"]
 edition = "2018"
 
 [dependencies]
-colored = "1.8"
 rand = "0.6"

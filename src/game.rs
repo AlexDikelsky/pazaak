@@ -2,10 +2,10 @@ use crate::POINTS_TO_WIN;
 
 pub fn setup_game(p1: &mut super::player::Player, p2: &mut super::player::Player) {
     p1.reset_score();
-    p1.to_my();
+    p1.to_not();
     p1.reset_board();
     p2.reset_score();
-    p2.to_my();
+    p2.to_not();
     p2.reset_board();
 }
 
@@ -73,7 +73,6 @@ pub fn find_winner(p1: &mut super::player::Player, p2: &mut super::player::Playe
     }
     else if p1_score == p2_score {
         println!("Both players had scores under {} and had the same score. Thus, no wins are awarded", POINTS_TO_WIN);
-        eprint!("P1: {}, P2: {}", p1.get_score(), p2.get_score());
     }
     else {
         println!("Something went wrong with the logic in the 'find_winner' function of the game.rs doc");

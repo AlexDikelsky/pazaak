@@ -8,7 +8,6 @@ pub fn draw(player: &mut super::player::Player) -> &mut super::player::Player {
 }
 
 pub fn play(player: &mut super::player::Player) -> &mut super::player::Player {
-    //Adds a card. Type 0 to not play a card
     println!("{}, Pick a card to play. Else, type 0", player.get_name());
     let choice = super::read::read_bounded_u8();
     if choice == 0 {}
@@ -24,9 +23,6 @@ pub fn choose_stand(player: &mut super::player::Player) -> &mut super::player::P
     let x = super::read::read_i8();
     if x == 1 || player.get_score() > POINTS_TO_WIN  {
         player.to_done(); 
-    }
-    else {
-        player.to_your();
     }
     player
 }
