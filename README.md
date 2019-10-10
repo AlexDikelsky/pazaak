@@ -16,13 +16,13 @@ PLAY:
 If you get over 20 points, you can play a negative card from your hand, or you lose.
 
 
-#Sample round:
+# Sample round:
 [![asciicast](https://asciinema.org/a/SDROWZbFMQmKUHT5Cwi1vTa8S.svg)](https://asciinema.org/a/SDROWZbFMQmKUHT5Cwi1vTa8S)
 
-#Tools used:
+# Tools used:
 Rust, vim
 
-##How to install
+## How to install
 
 ```
 $ git clone https://github.com/AlexDikelsky/pazaak/
