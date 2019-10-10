@@ -16,10 +16,10 @@ PLAY:
 If you get over 20 points, you can play a negative card from your hand, or you lose.
 
 
-Sample round:
-<script id="asciicast-SDROWZbFMQmKUHT5Cwi1vTa8S" src="https://asciinema.org/a/SDROWZbFMQmKUHT5Cwi1vTa8S.js" async></script>
+#Sample round:
+[![asciicast](https://asciinema.org/a/SDROWZbFMQmKUHT5Cwi1vTa8S.svg)](https://asciinema.org/a/SDROWZbFMQmKUHT5Cwi1vTa8S)
 
-Tools used:
+#Tools used:
 Rust, vim
 
 ##How to install
