@@ -14,3 +14,18 @@ PLAY:
 3. Either repeat from step 1 or stand
 
 If you get over 20 points, you can play a negative card from your hand, or you lose.
+
+
+Sample round:
+<script id="asciicast-SDROWZbFMQmKUHT5Cwi1vTa8S" src="https://asciinema.org/a/SDROWZbFMQmKUHT5Cwi1vTa8S.js" async></script>
+
+Tools used:
+Rust, vim
+
+##How to install
+
+```
+$ git clone https://github.com/AlexDikelsky/pazaak/
+$ cd pazzak
+$ cargo run
+```
